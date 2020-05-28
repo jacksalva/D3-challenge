@@ -7,10 +7,10 @@ d3.csv("assets/data/data.csv").then(function(data){
     //svg object
     var svg = d3.select("#scatter")
         .append("svg")
-            .attr("width", width + margin.left + margin.right)
-            .attr("height", height + margin.top + margin.bottom)
+        .attr("width", width + margin.left + margin.right)
+        .attr("height", height + margin.top + margin.bottom)
         .append("g")
-            .attr("transform","translate(" + margin.left + "," + margin.top + ")");
+        .attr("transform","translate(" + margin.left + "," + margin.top + ")");
     //x-axis
     var x = d3.scaleLinear()
         .domain([0,25])
@@ -31,22 +31,22 @@ d3.csv("assets/data/data.csv").then(function(data){
         .data(data)
         .enter()
         .append("circle")
-            .attr("cx", function (d) { return x(d.poverty); })
-            .attr("cy", function (d) { return y(d.healthcare); })
-            .attr("r", 10)
-            .attr("opacity", ".8")
-            .style("fill", "#565051")
+        .attr("cx", function (returnData) { return x(returnData.poverty); })
+        .attr("cy", function (returnData) { return y(returnData.healthcare); })
+        .attr("r", 10)
+        .attr("opacity", ".8")
+        .style("fill", "#565051")
 
     svg.append('g')
         .selectAll("text")
         .data(data)
         .enter()
         .append("text")
-            .attr("x", function (d) { return x(d.poverty-.25); })
-            .attr("y", function (d) { return y(d.healthcare-.15); })
-            .text(function(d){ return d.abbr})
-            .attr("font-size", "9px")
-            .attr("fill", "white");
+        .attr("x", function (returnData) { return x(returnData.poverty-.25); })
+        .attr("y", function (returnData) { return y(returnData.healthcare-.15); })
+        .text(function(a){ return a.abbr})
+        .attr("font-size", "9px")
+        .attr("fill", "white");
     
     // Add the x Axis
     svg.append("g")
